@@ -23,6 +23,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime().now()
             self.updated_at = datetime.datetime().now()
+            storage.new(self)
     
     @property
     def id(self):
@@ -37,8 +38,9 @@ class BaseModel:
         the current datetime
         """
         self.updated_at = datetime.datetime.now()
-        storage.save(self)
-    
+        storage.new(self)
+        storage.save()
+
     def to_dict(self):
         new = self.__dict__
         new["__class__"] = self.__class__.__name__

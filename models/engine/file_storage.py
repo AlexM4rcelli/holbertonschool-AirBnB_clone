@@ -8,9 +8,8 @@ class FileStorage:
     deserializes JSON file to instances
     """
 
-    def __init__(self, file_path):
+    def __init__(self, file_path=""):
         """Initialize a instance"""
-
         self.__file_path = file_path
         self.__objects = {}
 
