@@ -10,27 +10,28 @@ class BaseModel:
     """
     def __init__(self, *args, **kwargs):
         """Initialize a instance"""
+        self.id = str(uuid.uuid4())
         if kwargs:
-            self.id = str(uuid.uuid4())
             for name, value in kwargs.items():
                 if name == 'created_at' or name == 'updated_at':
-                    date = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    date = datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, name, date)
                 else:
                     if name != '__class__':
                         setattr(self, name, value)
         else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime().now()
-            self.updated_at = datetime.datetime().now()
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
             storage.new(self)
+        storage.save()
+        
     
-    @property
-    def id(self):
-        return self._id
 
     def __str__(self):
-        return f"{type(self)} ({self.__id}) {self.__dict__}"
+        sorted_dict = {}
+        for key in sorted(self.__dict__):
+            sorted_dict[f"{key}"] = self.__dict__[f"{key}"]
+        return f"[{type(self).__name__}] ({self.id}) {sorted_dict}"
     
     def save(self):
         """
