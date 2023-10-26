@@ -20,13 +20,16 @@ class FileStorage:
         """
         Sets in __objects the obj with key <obj class name>.id
         """
-        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj.to_dict()
 
     def save(self):
         """Serializes __objects to the JSON file"""
         obj_list = {key: val for key, val in self.__objects.items()}
+        for key, val in obj_list.items():
+            if '__class__' in val:
+                del val['__class__']
         with open(self.__file_path, 'w', encoding="utf-8") as file:
-            file.write(json.dumps(obj_list, default=str, indent=4))
+            file.write(json.dumps(obj_list, indent=4))
     
     def reload(self): 
         """deserializes the JSON file to __objects"""

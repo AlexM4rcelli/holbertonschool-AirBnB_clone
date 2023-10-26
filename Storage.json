@@ -1,4 +1,0 @@
-{
-    "BaseModel.8361e80f-6b62-43de-b204-53cf4d225516": "[BaseModel] (8361e80f-6b62-43de-b204-53cf4d225516) {'created_at': datetime.datetime(2023, 10, 25, 10, 44, 46, 901064), 'id': '8361e80f-6b62-43de-b204-53cf4d225516', 'updated_at': datetime.datetime(2023, 10, 25, 10, 44, 46, 904088)}",
-    "BaseModel.71e69223-4991-4ffa-b7de-468568c53434": "[BaseModel] (71e69223-4991-4ffa-b7de-468568c53434) {'created_at': datetime.datetime(2023, 10, 25, 10, 45, 0, 81677), 'id': '71e69223-4991-4ffa-b7de-468568c53434', 'updated_at': datetime.datetime(2023, 10, 25, 10, 45, 0, 83471)}"
-}
