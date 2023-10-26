@@ -1,6 +1,13 @@
 #!/usr/bin/python3
 
 import json
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class FileStorage:
     """
@@ -8,10 +15,17 @@ class FileStorage:
     deserializes JSON file to instances
     """
 
-    def __init__(self, file_path):
-        """Initialize a instance"""
-        self.__file_path = file_path
-        self.__objects = {}
+    __file_path = 'file.json'
+    __objects = {}
+    class_dict = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "Place": Place,
+        "Amenity": Amenity,
+        "City": City,
+        "Review": Review,
+        "State": State
+    }
 
     def all(self):
         return self.__objects
@@ -20,21 +34,21 @@ class FileStorage:
         """
         Sets in __objects the obj with key <obj class name>.id
         """
-        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj.to_dict()
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
     def save(self):
         """Serializes __objects to the JSON file"""
-        obj_list = {key: val for key, val in self.__objects.items()}
-        for key, val in obj_list.items():
-            if '__class__' in val:
-                del val['__class__']
+        obj_list = {key: val.to_dict() for key, val in self.__objects.items()}
         with open(self.__file_path, 'w', encoding="utf-8") as file:
-            file.write(json.dumps(obj_list, indent=4))
+            json.dump(obj_list, file)
     
     def reload(self): 
         """deserializes the JSON file to __objects"""
         try:
             with open(self.__file_path, 'r', encoding="utf-8") as file:
-                self.__objects = json.load(file)
-        except:
+                new_obj = json.load(file)
+            for key, val in new_obj.items():
+                obj = self.class_dict[val['__class__']](**val)
+                self.__objects[key] = obj
+        except FileNotFoundError:
             pass

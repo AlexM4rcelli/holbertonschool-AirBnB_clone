@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-from models.__init__ import storage
-import datetime
+import models
+from datetime import datetime
 import uuid
 
 
@@ -10,19 +10,19 @@ class BaseModel:
     """
     def __init__(self, *args, **kwargs):
         """Initialize a instance"""
-        self.id = str(uuid.uuid4())
         if kwargs:
             for name, value in kwargs.items():
                 if name == 'created_at' or name == 'updated_at':
-                    date = datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    date = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, name, date)
                 else:
                     if name != '__class__':
                         setattr(self, name, value)
         else:
-            self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
-            storage.new(self)
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
         
     
 
@@ -37,12 +37,16 @@ class BaseModel:
         Updates the public instance attribute updated_at with 
         the current datetime
         """
-        self.updated_at = datetime.datetime.now()
-        storage.save()
+        self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         new = self.__dict__
         new["__class__"] = self.__class__.__name__
-        new['created_at'] = self.created_at.isoformat()
-        new['updated_at'] = self.updated_at.isoformat()
+        for key, val in new.items():
+            if isinstance(new[key], datetime):
+                new[key] = val.isoformat()
+            else:
+                new[key] = val
+        
         return new

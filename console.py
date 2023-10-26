@@ -8,6 +8,8 @@ from models.state import State
 from models.amenity import Amenity
 from models.city import City
 from models.review import Review
+from models.place import Place
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -52,9 +54,9 @@ class HBNBCommand(cmd.Cmd):
                     print (" ** class doesn't exist ** ")
                     return
                 else:
-                    newinstance = eval(f"{arg}()")
-                    storage.save()
-                    print(newinstance.id)
+                    new_instance = eval(f"{arg}()")
+                    new_instance.save()
+                    print(new_instance.id)
 
     def do_show(self, args):
         """
@@ -113,12 +115,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all (self, args):
         args = args.replace('  ', ' ').replace('\n', ' ').split(' ')
         if len(args) == 1 and args[0] == '':
-            ins_list = []
-            for key, val in storage.all().items():
-                cls_name = key.split('.')[0]
-                ins = globals().get(cls_name)(**val)
-                ins_list.append(ins)
-            print([str(ins) for ins in ins_list])
+            print([str(ins) for ins in storage.all().values()])
         else:
             for arg in args:
                 if arg not in HBNBCommand.__classes:
@@ -127,8 +124,7 @@ class HBNBCommand(cmd.Cmd):
                     ins_list = []
                     for key, val in storage.all().items():
                         if key.startswith(arg):
-                            ins = globals().get(arg)(**val)
-                            ins_list.append(ins)
+                            ins_list.append(val)
                     print([str(ins) for ins in ins_list])
 
     def do_update(self, args):
