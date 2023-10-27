@@ -24,8 +24,8 @@ class HBNBCommand(cmd.Cmd):
         "Amenity",
         "Review"
     }
-    
-    
+
+
     def do_quit(self, args):
         """Exit the program"""
         return True
@@ -51,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
             args = args.replace('  ', ' ').replace('\n', ' ').split(' ')
             for arg in args:
                 if arg not in HBNBCommand().__classes:
-                    print (" ** class doesn't exist ** ")
+                    print(" ** class doesn't exist ** ")
                     return
                 else:
                     new_instance = eval(f"{arg}()")
@@ -59,14 +59,7 @@ class HBNBCommand(cmd.Cmd):
                     print(new_instance.id)
 
     def do_show(self, args):
-        """
-        show: Prints the string representation of an instance based on the class name and id. Ex: $ show BaseModel 1234-1234-1234.
-        If the class name is missing, print ** class name missing ** (ex: $ show)
-        If the class name doesn’t exist, print ** class doesn't exist ** (ex: $ show MyModel id)
-        If the id is missing, print ** instance id missing ** (ex: $ show BaseModel)
-        If the instance of the class name doesn’t exist for the id, print ** no instance found ** (ex: $ show BaseModel 121212)
-        """
-        
+
         if not args:
             print("** class name missing **")
             return
@@ -77,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             elif args[0] not in HBNBCommand.__classes:
                 print(args[0])
-                print (" ** class doesn't exist ** ")
+                print(" ** class doesn't exist ** ")
                 return
             elif len(args) == 1:
                 print(" ** instance id missing ** ")
@@ -99,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
                 print('Usage: ClassName ClassNameid')
                 return
             elif args[0] not in HBNBCommand.__classes:
-                print (" ** class doesn't exist ** ")
+                print(" ** class doesn't exist ** ")
                 return
             elif len(args) == 1:
                 print(" ** instance id missing ** ")
@@ -112,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
                 return
 
-    def do_all (self, args):
+    def do_all(self, args):
         args = args.replace('  ', ' ').replace('\n', ' ').split(' ')
         if len(args) == 1 and args[0] == '':
             print([str(ins) for ins in storage.all().values()])
@@ -133,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         elif args[0] not in HBNBCommand.__classes:
-            print ("** class doesn't exist **")
+            print("** class doesn't exist **")
             return
         elif len(args) == 1:
             print("** instance id missing **")

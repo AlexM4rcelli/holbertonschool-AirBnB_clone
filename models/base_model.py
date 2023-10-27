@@ -23,18 +23,16 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             models.storage.new(self)
-        
-    
 
     def __str__(self):
         sorted_dict = {}
         for key in sorted(self.__dict__):
             sorted_dict[f"{key}"] = self.__dict__[f"{key}"]
         return f"[{type(self).__name__}] ({self.id}) {sorted_dict}"
-    
+
     def save(self):
         """
-        Updates the public instance attribute updated_at with 
+        Updates the public instance attribute updated_at with
         the current datetime
         """
         self.updated_at = datetime.now()
@@ -48,5 +46,5 @@ class BaseModel:
                 new[key] = val.isoformat()
             else:
                 new[key] = val
-        
+
         return new
