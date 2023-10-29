@@ -39,12 +39,9 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        new = self.__dict__
+        new = self.__dict__.copy()
         new["__class__"] = self.__class__.__name__
         for key, val in new.items():
             if isinstance(new[key], datetime):
                 new[key] = val.isoformat()
-            else:
-                new[key] = val
-
         return new
