@@ -3,7 +3,7 @@
 </h1>
 
 <h1 align ="center">
-<img src="https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231027%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231027T151343Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=19420f61133ee537d06002d38c1ada56d0cb74c56dbcbbed4367a5c935e74bd2" height="60%" width="50%">
+<img src="https://camo.githubusercontent.com/dd07bdb5f1d850f43898037ed8f72e1d53af03841b08cabf09303f5902c3509f/68747470733a2f2f692e6962622e636f2f64354e38354e682f68626e622e706e67" height="60%" width="50%">
 </h1>
 
 <div align="center">
@@ -52,6 +52,52 @@ The console is a Command Line Interface (CLI) tool that serves as a backend util
 * ```show``` - Prints the string representation of an instance based on the class name and id.
 * ```all``` - Prints all string representation of all instances based or not on the class name.
 * ```update``` - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
+
+
+<div align="Center">
+  <h1>Examples</h1>
+</div>
+
+
+- Run console in interactive mode:
+
+```$ 
+./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+
+(hbnb) 
+(hbnb) 
+(hbnb) quit
+$
+```
+
+- Run console in Non-interactive mode:
+
+```
+$ echo "help" | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+```
 
 ## Authors
 | [<img src="https://avatars.githubusercontent.com/u/135631203?v=4" width=115><br><sub> Franco Doldan </sub>](https://github.com/FrancoDoldan0) |  [<img src="https://avatars.githubusercontent.com/u/135648091?v=4" width=115><br><sub>Alex Marcelli </sub>](https://github.com/AlexM4rcelli) |
