@@ -40,7 +40,7 @@ You won’t implement all the features, only some of them to cover all fundament
 The console is a Command Line Interface (CLI) tool that serves as a backend utility. It provides the capability to interact with and manage all the pre-defined classes that have been previously loaded into the storage object.
 
 <p align="center">
-  <img src="https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231027%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231027T130425Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=609796057d6cf8cb02b0e967fbb22711ff0fc05081d87806f0a984c3e3a8c70e" alt="storage">
+  <img src="https://camo.githubusercontent.com/7af0e655c34b0f4fac08af12c02b47ae017dcbc4fcaa06117b81234bb5f3c7fc/68747470733a2f2f692e696d6775722e636f6d2f6c675a6e5a727a2e706e67" alt="storage">
 </p>
 
 ## Console description.
