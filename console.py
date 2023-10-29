@@ -70,10 +70,10 @@ class HBNBCommand(cmd.Cmd):
                 return
             elif args[0] not in HBNBCommand.__classes:
                 print(args[0])
-                print(" ** class doesn't exist ** ")
+                print("** class doesn't exist **")
                 return
             elif len(args) == 1:
-                print(" ** instance id missing ** ")
+                print("** instance id missing **")
                 return
             elif f"{args[0]}.{args[1]}" not in storage.all():
                 print("** no instance found **")
@@ -92,10 +92,10 @@ class HBNBCommand(cmd.Cmd):
                 print('Usage: ClassName ClassNameid')
                 return
             elif args[0] not in HBNBCommand.__classes:
-                print(" ** class doesn't exist ** ")
+                print("** class doesn't exist **")
                 return
             elif len(args) == 1:
-                print(" ** instance id missing ** ")
+                print("** instance id missing **")
                 return
             elif f"{args[0]}.{args[1]}" not in storage.all():
                 print("** no instance found **")
@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             instance = storage.all()[f"{args[0]}.{args[1]}"]
-            instance[args[2]] = args[3].strip('"')
+            setattr(instance, args[2], args[3].strip('"'))
             storage.save()
 
 
