@@ -1,0 +1,15 @@
+header {
+    background: #fff;
+    height: 70px; 
+    width: 100%;
+    border-bottom: #cccccc 1px solid;
+}
+
+header div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin-left: 20px;
+    background-image: url('../images/logo.png');
+    background-repeat: no-repeat;
+}
